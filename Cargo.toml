@@ -1,0 +1,39 @@
+[package]
+name = "async-generator"
+version = "0.1.0"
+edition = "2024"
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Async generators that implement futures::Stream on stable Rust"
+readme = "README.md"
+keywords = ["async", "generator", "stream", "futures"]
+categories = ["asynchronous"]
+include = ["src/**", "README.md"]
+
+[features]
+default = ["macros"]
+macros = ["async-generator-macros"]
+
+[dependencies]
+async-generator-macros = { version = "0.1.0", path = "macros", optional = true }
+
+futures = "0.3.32"
+pin-project = "1.1.13"
+
+[dev-dependencies]
+tokio = { version = "1.52.3", features = ["rt-multi-thread", "macros", "time"] }
+
+[workspace]
+members = ["macros"]
+
+[workspace.package]
+rust-version = "1.88"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/KoHcoJlb/async-generator"
+
+[workspace.lints.rust]
+irrefutable_let_patterns = "allow"
+
+[lints]
+workspace = true
